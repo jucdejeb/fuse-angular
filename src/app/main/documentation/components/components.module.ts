@@ -14,7 +14,6 @@ import { DocsComponentsHighlightComponent } from 'app/main/documentation/compone
 import { DocsComponentsMaterialColorPickerComponent } from 'app/main/documentation/components/material-color-picker/material-color-picker.component';
 import { DocsComponentsNavigationComponent } from 'app/main/documentation/components/navigation/navigation.component';
 import { DocsComponentsProgressBarComponent } from 'app/main/documentation/components/progress-bar/progress-bar.component';
-import { DocsComponentsSearchBarComponent } from 'app/main/documentation/components/search-bar/search-bar.component';
 import { DocsComponentsSidebarComponent } from 'app/main/documentation/components/sidebar/sidebar.component';
 import { DocsComponentsShortcutsComponent } from 'app/main/documentation/components/shortcuts/shortcuts.component';
 import { DocsComponentsWidgetComponent } from 'app/main/documentation/components/widget/widget.component';
@@ -45,10 +44,6 @@ const routes = [
         component: DocsComponentsProgressBarComponent
     },
     {
-        path     : 'search-bar',
-        component: DocsComponentsSearchBarComponent
-    },
-    {
         path     : 'sidebar',
         component: DocsComponentsSidebarComponent
     },
@@ -70,7 +65,6 @@ const routes = [
         DocsComponentsMaterialColorPickerComponent,
         DocsComponentsNavigationComponent,
         DocsComponentsProgressBarComponent,
-        DocsComponentsSearchBarComponent,
         DocsComponentsSidebarComponent,
         DocsComponentsShortcutsComponent,
         DocsComponentsWidgetComponent

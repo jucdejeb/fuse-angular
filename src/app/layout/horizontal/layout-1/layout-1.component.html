@@ -2,10 +2,9 @@
 <ng-container *ngIf="!fuseConfig.layout.sidepanel.hidden && fuseConfig.layout.sidepanel.position === 'left'">
 
     <!-- CHAT PANEL -->
-    <fuse-sidebar name="chatPanel" position="left" class="chat-panel left-chat-panel"
+    <fuse-sidebar position="left" class="chat-panel left-chat-panel"
                   [folded]="true" [foldedWidth]="70" [foldedAutoTriggerOnHover]="false"
                   lockedOpen="gt-md">
-        <chat-panel></chat-panel>
     </fuse-sidebar>
     <!-- / CHAT PANEL -->
 
@@ -49,23 +48,11 @@
                 <content></content>
                 <!-- / CONTENT -->
 
-                <!-- FOOTER: Below -->
-                <ng-container *ngIf="fuseConfig.layout.footer.position === 'above-static'">
-                    <ng-container *ngTemplateOutlet="footer"></ng-container>
-                </ng-container>
-                <!-- / FOOTER: Below -->
-
             </div>
 
         </div>
 
     </div>
-
-    <!-- FOOTER: Above -->
-    <ng-container *ngIf="fuseConfig.layout.footer.position === 'above-fixed'">
-        <ng-container *ngTemplateOutlet="footer"></ng-container>
-    </ng-container>
-    <!-- FOOTER: Above -->
 
 </div>
 
@@ -73,10 +60,9 @@
 <ng-container *ngIf="!fuseConfig.layout.sidepanel.hidden && fuseConfig.layout.sidepanel.position === 'right'">
 
     <!-- CHAT PANEL -->
-    <fuse-sidebar name="chatPanel" position="right" class="chat-panel right-chat-panel"
+    <fuse-sidebar position="right" class="chat-panel right-chat-panel"
                   [folded]="true" [foldedWidth]="70" [foldedAutoTriggerOnHover]="false"
                   lockedOpen="gt-md">
-        <chat-panel></chat-panel>
     </fuse-sidebar>
     <!-- / CHAT PANEL -->
 
@@ -100,14 +86,6 @@
     </toolbar>
 </ng-template>
 <!-- / TOOLBAR -->
-
-<!-- FOOTER -->
-<ng-template #footer>
-    <footer *ngIf="!fuseConfig.layout.footer.hidden"
-            [ngClass]="fuseConfig.layout.footer.customBackgroundColor === true ? fuseConfig.layout.footer.position + ' ' + fuseConfig.layout.footer.background : fuseConfig.layout.footer.position">
-    </footer>
-</ng-template>
-<!-- / FOOTER -->
 
 <!-- TOP NAVBAR -->
 <ng-template #topNavbar>
