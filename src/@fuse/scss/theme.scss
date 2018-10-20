@@ -1,7 +1,6 @@
 @import "src/@fuse/components/countdown/countdown.theme";
 @import "src/@fuse/components/material-color-picker/material-color-picker.theme";
 @import "src/@fuse/components/sidebar/sidebar.theme";
-@import "src/@fuse/components/theme-options/theme-options.theme";
 @import "src/@fuse/components/widget/widget.theme";
 
 @mixin fuse-core-theme($theme) {
@@ -16,7 +15,6 @@
     // Theming for Fuse components
     @include fuse-countdown-theme($theme);
     @include fuse-sidebar-theme($theme);
-    @include fuse-theme-options-theme($theme);
     @include fuse-material-color-picker-theme($theme);
     @include fuse-widget-theme($theme);
 
