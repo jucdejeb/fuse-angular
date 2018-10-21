@@ -76,7 +76,7 @@ $typography: mat-typography-config(
 // Import app and page component themes here to enable theming for them
 @import "src/app/layout/components/toolbar/toolbar.theme";
 
-@import "src/app/main/apps/dashboards/project/project.theme";
+@import "src/app/main/apps/dashboard/dashboard.theme";
 
 @import "src/app/main/pages/authentication/login/login.theme";
 @import "src/app/main/pages/authentication/forgot-password/forgot-password.theme";
@@ -89,7 +89,7 @@ $typography: mat-typography-config(
     @include toolbar-theme($theme);
 
     // Apps
-    @include dashboards-project-theme($theme);
+    @include dashboards-theme($theme);
 
     // Pages
     @include login-theme($theme);

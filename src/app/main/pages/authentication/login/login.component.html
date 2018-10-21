@@ -10,7 +10,7 @@
 
             <div class="title">LOGIN TO YOUR ACCOUNT</div>
 
-            <form name="loginForm" (submit)="onSumbit()" [formGroup]="loginForm" novalidate>
+            <form name="loginForm"(ngSubmit)="loginEmail()" [formGroup]="loginForm" novalidate>
 
                 <mat-form-field>
                     <input matInput placeholder="Email" formControlName="email">
@@ -37,7 +37,7 @@
                     </a>
                 </div> -->
 
-                <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" [disabled]="loginForm.invalid">
+                <button [ladda]="isFormSubmit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" [disabled]="loginForm.invalid">
                     LOGIN
                 </button>
 

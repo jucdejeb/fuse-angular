@@ -1,4 +1,4 @@
-@mixin dashboards-project-theme($theme) {
+@mixin dashboards-theme($theme) {
 
     $background: map-get($theme, background);
     $is-dark: map-get($theme, is-dark);

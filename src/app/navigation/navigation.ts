@@ -2,40 +2,27 @@ import { FuseNavigation } from '@fuse/types';
 
 export const navigation: FuseNavigation[] = [
     {
-        id       : 'application',
-        title    : 'application',
+        id: 'application',
+        title: 'application',
         translate: 'NAV.APPLICATIONS',
-        type     : 'group',
-        icon     : 'apps',
-        children : [
+        type: 'group',
+        icon: 'apps',
+        children: [
             {
-                id       : 'dashboards',
-                title    : 'Dashboards',
+                id: 'dashboards',
+                title: 'Dashboards',
                 translate: 'NAV.DASHBOARDS',
-                type     : 'collapsable',
-                icon     : 'dashboard',
-                children : [
-                    {
-                        id   : 'analytics',
-                        title: 'Analytics',
-                        type : 'item',
-                        url  : '/apps/dashboards/analytics'
-                    },
-                    {
-                        id   : 'project',
-                        title: 'Project',
-                        type : 'item',
-                        url  : '/apps/dashboards/project'
-                    }
-                ]
+                type: 'collapsable',
+                icon: 'dashboard',
+                url: '/apps/dashboard'
             },
             {
-                id       : 'calendar',
-                title    : 'Calendar',
+                id: 'calendar',
+                title: 'Calendar',
                 translate: 'NAV.CALENDAR',
-                type     : 'item',
-                icon     : 'today',
-                url      : '/apps/calendar'
+                type: 'item',
+                icon: 'today',
+                url: '/apps/calendar'
             }
         ]
     }

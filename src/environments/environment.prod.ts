@@ -1,17 +1,18 @@
-// import { IConfig } from './iconfig';
+import { IConfig } from './iconfig';
 
 export const environment = {
     production: true,
     hmr: false
 };
 
-// export const CONFIG: IConfig = {
-//     'firebaseConfig': {
-//         apiKey: 'AIzaSyD3c0rv0asPGlZXV5gv_hi93D1lle8hKWY',
-//         authDomain: 'fuse-test-29645.firebaseapp.com',
-//         databaseURL: 'https://fuse-test-29645.firebaseio.com',
-//         projectId: 'fuse-test-29645',
-//         storageBucket: 'fuse-test-29645.appspot.com',
-//         messagingSenderId: '548284738955'
-//     }
-// };
+export const CONFIG: IConfig = {
+    'firebaseConfig': {
+        apiKey: 'AIzaSyBvlBZqFoCGf_LEn2984zWucGj4cFq2D5A',
+        authDomain: 'mainapp-9c872.firebaseapp.com',
+        databaseURL: 'https://mainapp-9c872.firebaseio.com',
+        projectId: 'mainapp-9c872',
+        storageBucket: 'mainapp-9c872.appspot.com',
+        messagingSenderId: '365674294653'
+    }
+};
+

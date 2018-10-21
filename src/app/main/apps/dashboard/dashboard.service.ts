@@ -4,8 +4,9 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class AnalyticsDashboardService implements Resolve<any>
+export class DashboardService implements Resolve<any>
 {
+    projects: any[];
     widgets: any[];
 
     /**
@@ -28,9 +29,11 @@ export class AnalyticsDashboardService implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
     {
+
         return new Promise((resolve, reject) => {
 
             Promise.all([
+                this.getProjects(),
                 this.getWidgets()
             ]).then(
                 () => {
@@ -42,6 +45,22 @@ export class AnalyticsDashboardService implements Resolve<any>
     }
 
     /**
+     * Get projects
+     *
+     * @returns {Promise<any>}
+     */
+    getProjects(): Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.get('api/project-dashboard-projects')
+                .subscribe((response: any) => {
+                    this.projects = response;
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    /**
      * Get widgets
      *
      * @returns {Promise<any>}
@@ -49,7 +68,7 @@ export class AnalyticsDashboardService implements Resolve<any>
     getWidgets(): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.get('api/analytics-dashboard-widgets')
+            this._httpClient.get('api/project-dashboard-widgets')
                 .subscribe((response: any) => {
                     this.widgets = response;
                     resolve(response);

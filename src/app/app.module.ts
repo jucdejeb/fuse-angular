@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,12 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
+
+// Firebase
+import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -19,28 +25,42 @@ import { AppComponent } from 'app/app.component';
 import { AppStoreModule } from 'app/store/store.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
+import { CONFIG } from 'environments/environment';
+import { AuthGuard } from './main/pages/authentication/auth/auth-guard.service';
+import { AuthService } from './main/pages/authentication/auth/auth-service.service';
 
 const appRoutes: Routes = [
     {
-        path        : 'apps',
+        path: 'apps',
+        canActivate: [AuthGuard],
         loadChildren: './main/apps/apps.module#AppsModule'
     },
     {
-        path        : 'pages',
+        path: 'pages',  
         loadChildren: './main/pages/pages.module#PagesModule'
     },
     {
-        path      : '**',
-        // redirectTo: 'pages/auth/login'
-        redirectTo: 'apps/dashboards/analytics'
+        path: '**',
+        redirectTo: 'pages/auth/login'
+        // redirectTo: 'apps/dashboards/analytics'
     }
 ];
+
+
+export const firebaseConfig: FirebaseAppConfig = CONFIG.firebaseConfig;
 
 @NgModule({
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
+        // firebase
+
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+
+
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -48,7 +68,7 @@ const appRoutes: Routes = [
 
         TranslateModule.forRoot(),
         InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay             : 0,
+            delay: 0,
             passThruUnknownUrl: true
         }),
 
@@ -69,10 +89,13 @@ const appRoutes: Routes = [
         LayoutModule,
         AppStoreModule
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
+    ],
+    providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        AuthGuard, AuthService
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }

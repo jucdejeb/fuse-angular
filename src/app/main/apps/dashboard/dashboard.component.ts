@@ -5,17 +5,17 @@ import * as shape from 'd3-shape';
 
 import { fuseAnimations } from '@fuse/animations';
 
-import { ProjectDashboardService } from 'app/main/apps/dashboards/project/project.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { DashboardService } from './dashboard.service';
 
 @Component({
-    selector     : 'project-dashboard',
-    templateUrl  : './project.component.html',
-    styleUrls    : ['./project.component.scss'],
+    selector     : 'fuse-dashboard',
+    templateUrl  : './dashboard.component.html',
+    styleUrls    : ['./dashboard.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ProjectDashboardComponent implements OnInit
+export class DashboardComponent implements OnInit
 {
     projects: any[];
     selectedProject: any;
@@ -38,7 +38,7 @@ export class ProjectDashboardComponent implements OnInit
      */
     constructor(
         private _fuseSidebarService: FuseSidebarService,
-        private _projectDashboardService: ProjectDashboardService
+        private _projectDashboardService: DashboardService
     )
     {
         /**

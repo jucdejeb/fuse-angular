@@ -1,5 +1,5 @@
-// import { FirebaseAppConfig } from 'angularfire2';
+import { FirebaseAppConfig } from 'angularfire2';
 
-// export interface IConfig {
-//   firebaseConfig: FirebaseAppConfig;
-// }
+export interface IConfig {
+  firebaseConfig: FirebaseAppConfig;
+}

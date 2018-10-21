@@ -5,12 +5,8 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes = [
     {
-        path        : 'dashboards/analytics',
-        loadChildren: './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
-    },
-    {
-        path        : 'dashboards/project',
-        loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
+        path        : 'dashboard',
+        loadChildren: './dashboard/dashboard.module#DashboardModule'
     },
     {
         path        : 'calendar',
