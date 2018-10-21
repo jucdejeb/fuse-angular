@@ -9,8 +9,6 @@ import { FuseNavigationComponent } from './navigation.component';
 import { FuseNavVerticalItemComponent } from './vertical/item/item.component';
 import { FuseNavVerticalCollapsableComponent } from './vertical/collapsable/collapsable.component';
 import { FuseNavVerticalGroupComponent } from './vertical/group/group.component';
-import { FuseNavHorizontalItemComponent } from './horizontal/item/item.component';
-import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/collapsable.component';
 
 @NgModule({
     imports     : [
@@ -29,9 +27,7 @@ import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/
         FuseNavigationComponent,
         FuseNavVerticalGroupComponent,
         FuseNavVerticalItemComponent,
-        FuseNavVerticalCollapsableComponent,
-        FuseNavHorizontalItemComponent,
-        FuseNavHorizontalCollapsableComponent
+        FuseNavVerticalCollapsableComponent
     ]
 })
 export class FuseNavigationModule

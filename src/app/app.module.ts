@@ -31,6 +31,7 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
+        // redirectTo: 'pages/auth/login'
         redirectTo: 'apps/dashboards/analytics'
     }
 ];
