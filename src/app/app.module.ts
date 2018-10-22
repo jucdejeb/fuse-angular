@@ -28,15 +28,16 @@ import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
 import { CONFIG } from 'environments/environment';
 import { AuthGuard } from './main/pages/authentication/auth/auth-guard.service';
 import { AuthService } from './main/pages/authentication/auth/auth-service.service';
+import { UrlRoute } from '@fuse/common/Routes';
 
 const appRoutes: Routes = [
     {
-        path: 'apps',
+        path: UrlRoute.apps,
         canActivate: [AuthGuard],
         loadChildren: './main/apps/apps.module#AppsModule'
     },
     {
-        path: 'pages',  
+        path: UrlRoute.pages,
         loadChildren: './main/pages/pages.module#PagesModule'
     },
     {

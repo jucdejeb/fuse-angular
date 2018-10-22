@@ -5,6 +5,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { AuthService } from '../auth/auth-service.service';
 import { Router } from '@angular/router';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Component({
     selector: 'login',
@@ -49,7 +50,8 @@ export class LoginComponent implements OnInit {
             }
         };
         if (authService.isLoggedIn()) {
-            this.router.navigate(['apps/dashboard']);
+            const url = UrlRoute.apps + '/' + UrlRoute.dashboard;
+            this.router.navigate([url]);
         }
     }
 
@@ -91,7 +93,8 @@ export class LoginComponent implements OnInit {
 
     redirectToDashboard() {
         setTimeout(() => {
-            this.router.navigate(['apps/dashboard']);
+            const url = UrlRoute.apps + '/' + UrlRoute.dashboard;
+            this.router.navigate([url]);
         }, 1500);
     }
 }

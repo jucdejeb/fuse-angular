@@ -5,22 +5,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { AuthService } from './auth-service.service';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService, private router: Router) { }
-
-  // canActivate() {
-  //   return this.auth.user
-  //     .take(1)
-  //     .map(authState => !!authState)
-  //     .do(authenticated => {
-  //       if (!authenticated) {
-  //         this.router.navigate(['pages/auth/login']);
-  //       }
-  //     });
-  // }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -28,7 +18,7 @@ export class AuthGuard implements CanActivate {
     if (this.auth.isLoggedIn()) {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate([UrlRoute.login]);
       return false;
     }
   }

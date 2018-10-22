@@ -1,4 +1,5 @@
 import { FuseNavigation } from '@fuse/types';
+import { UrlRoute } from '@fuse/common/Routes';
 
 export const navigation: FuseNavigation[] = [
     {
@@ -12,17 +13,9 @@ export const navigation: FuseNavigation[] = [
                 id: 'dashboards',
                 title: 'Dashboards',
                 translate: 'NAV.DASHBOARDS',
-                type: 'collapsable',
-                icon: 'dashboard',
-                url: '/apps/dashboard'
-            },
-            {
-                id: 'calendar',
-                title: 'Calendar',
-                translate: 'NAV.CALENDAR',
                 type: 'item',
-                icon: 'today',
-                url: '/apps/calendar'
+                icon: 'dashboard',
+                url: UrlRoute.apps + '/' + UrlRoute.dashboard
             }
         ]
     }

@@ -2,24 +2,24 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
+import { UrlRoute } from '@fuse/common/Routes';
 
 const routes = [
     {
-        path        : 'dashboard',
+        path: UrlRoute.dashboard,
         loadChildren: './dashboard/dashboard.module#DashboardModule'
     },
     {
-        path        : 'calendar',
-        loadChildren: './calendar/calendar.module#CalendarModule'
+        path: 'profile',
+        loadChildren: './profile/profile.module#ProfileModule'
     }
 ];
 
 @NgModule({
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
         FuseSharedModule
     ]
 })
-export class AppsModule
-{
+export class AppsModule {
 }

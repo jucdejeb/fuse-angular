@@ -6,21 +6,21 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule } from '@fuse/components';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
-import { DashboardComponent } from './dashboard.component';
+import { ProfileDetailComponent } from './profile-detail.component';
 
 
 const routes: Routes = [
     {
-        path     : '**',
-        component: DashboardComponent
+        path: '**',
+        component: ProfileDetailComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        DashboardComponent
+        ProfileDetailComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
 
         MatButtonModule,
@@ -38,10 +38,9 @@ const routes: Routes = [
         FuseSidebarModule,
         FuseWidgetModule
     ],
-    providers   : [
+    providers: [
     ]
 })
-export class DashboardModule
-{
+export class ProfileDetailModule {
 }
 

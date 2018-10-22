@@ -5,10 +5,11 @@ import { LaddaModule } from 'angular2-ladda';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { LoginComponent } from 'app/main/pages/authentication/login/login.component';
+import { UrlRoute } from '@fuse/common/Routes';
 
 const routes = [
     {
-        path     : 'auth/login',
+        path: UrlRoute.auth + '/' + UrlRoute.login,
         component: LoginComponent
     }
 ];
@@ -17,7 +18,7 @@ const routes = [
     declarations: [
         LoginComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
         MatButtonModule,
         MatCheckboxModule,
@@ -27,6 +28,5 @@ const routes = [
         LaddaModule
     ]
 })
-export class LoginModule
-{
+export class LoginModule {
 }
