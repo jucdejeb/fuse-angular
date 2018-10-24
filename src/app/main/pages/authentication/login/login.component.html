@@ -10,22 +10,25 @@
 
             <div class="title">LOGIN TO YOUR ACCOUNT</div>
 
-            <form name="loginForm"(ngSubmit)="loginEmail()" [formGroup]="loginForm" novalidate>
-
+            <form name="loginForm" (ngSubmit)="loginEmail()" [formGroup]="loginForm" novalidate>
+                <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loginError">
+                    <div>
+                        Email and Password is invalid
+                    </div>
+                </div>
                 <mat-form-field>
-                    <input matInput placeholder="Email" formControlName="email">
+                    <input type="email" matInput placeholder="Email" formControlName="email" required>
                     <mat-error *ngIf="loginForm.get('email').hasError('required')">
                         Email is required
                     </mat-error>
-                    <mat-error *ngIf="!loginForm.get('email').hasError('required') &&
-                                loginForm.get('email').hasError('email')">
+                    <mat-error *ngIf="loginForm.get('email').hasError('email')">
                         Please enter a valid email address
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Password" formControlName="password">
-                    <mat-error>
+                    <input matInput type="password" placeholder="Password" formControlName="password" required>
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">
                         Password is required
                     </mat-error>
                 </mat-form-field>
@@ -37,7 +40,8 @@
                     </a>
                 </div> -->
 
-                <button [ladda]="isFormSubmit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" [disabled]="loginForm.invalid">
+                <button [ladda]="isFormSubmit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                    [disabled]="loginForm.invalid">
                     LOGIN
                 </button>
 

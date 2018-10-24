@@ -3,22 +3,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { AuthService } from '../auth/auth-service.service';
+
 import { Router } from '@angular/router';
-import { UrlRoute } from '@fuse/common/Routes';
+import { AuthService } from '../auth/auth-service.service';
 
 @Component({
-    selector: 'login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
+    selector     : 'login',
+    templateUrl  : './login.component.html',
+    styleUrls    : ['./login.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations: fuseAnimations
+    animations   : fuseAnimations
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit
+{
+    
     isFormSubmit = false;
 
     loginForm: FormGroup;
+    loginError = false;
 
     /**
      * Constructor
@@ -29,19 +31,20 @@ export class LoginComponent implements OnInit {
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
-        private authService: AuthService,
+		private authService: AuthService,
         private router: Router
-    ) {
+    )
+    {
         // Configure the layout
         this._fuseConfigService.config = {
             layout: {
-                navbar: {
+                navbar   : {
                     hidden: true
                 },
-                toolbar: {
+                toolbar  : {
                     hidden: true
                 },
-                footer: {
+                footer   : {
                     hidden: true
                 },
                 sidepanel: {
@@ -49,9 +52,8 @@ export class LoginComponent implements OnInit {
                 }
             }
         };
-        if (authService.isLoggedIn()) {
-            const url = UrlRoute.apps + '/' + UrlRoute.dashboard;
-            this.router.navigate([url]);
+		if (authService.isLoggedIn()) {
+            this.router.navigate(['apps/dashboards/analytics']);
         }
     }
 
@@ -62,11 +64,12 @@ export class LoginComponent implements OnInit {
     /**
      * On init
      */
-    ngOnInit(): void {
-        this.buildForm();
+    ngOnInit(): void
+    {
+		this.buildForm();
     }
-
-    buildForm() {
+	
+	 buildForm() {
         this.loginForm = this._formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
@@ -87,14 +90,13 @@ export class LoginComponent implements OnInit {
                 this.redirectToDashboard();
             })
             .catch((err) => {
-                console.log('asdf');
+                this.loginError = true;
             });
     }
 
     redirectToDashboard() {
         setTimeout(() => {
-            const url = UrlRoute.apps + '/' + UrlRoute.dashboard;
-            this.router.navigate([url]);
+            this.router.navigate(['apps/dashboards/analytics']);
         }, 1500);
     }
 }

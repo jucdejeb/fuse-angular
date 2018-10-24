@@ -72,6 +72,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('userDetail');
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate([UrlRoute.auth + '/' + UrlRoute.login]));
+      .then((res) => this.router.navigate(['pages/auth/login']));
   }
 }

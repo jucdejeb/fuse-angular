@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,8 +15,11 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { CONFIG } from 'environments/environment';
+
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
@@ -24,29 +27,35 @@ import { FakeDbService } from 'app/fake-db/fake-db.service';
 import { AppComponent } from 'app/app.component';
 import { AppStoreModule } from 'app/store/store.module';
 import { LayoutModule } from 'app/layout/layout.module';
-import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
-import { CONFIG } from 'environments/environment';
 import { AuthGuard } from './main/pages/authentication/auth/auth-guard.service';
 import { AuthService } from './main/pages/authentication/auth/auth-service.service';
-import { UrlRoute } from '@fuse/common/Routes';
 
 const appRoutes: Routes = [
     {
-        path: UrlRoute.apps,
-        canActivate: [AuthGuard],
+        path: 'apps',
         loadChildren: './main/apps/apps.module#AppsModule'
     },
     {
-        path: UrlRoute.pages,
+        path: 'pages',
         loadChildren: './main/pages/pages.module#PagesModule'
     },
     {
+        path: 'ui',
+        loadChildren: './main/ui/ui.module#UIModule'
+    },
+    {
+        path: 'documentation',
+        loadChildren: './main/documentation/documentation.module#DocumentationModule'
+    },
+    {
+        path: 'angular-material-elements',
+        loadChildren: './main/angular-material-elements/angular-material-elements.module#AngularMaterialElementsModule'
+    },
+    {
         path: '**',
-        redirectTo: 'pages/auth/login'
-        // redirectTo: 'apps/dashboards/analytics'
+        redirectTo: 'apps/dashboards/analytics'
     }
 ];
-
 
 export const firebaseConfig: FirebaseAppConfig = CONFIG.firebaseConfig;
 
@@ -60,7 +69,6 @@ export const firebaseConfig: FirebaseAppConfig = CONFIG.firebaseConfig;
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFirestoreModule,
         AngularFireAuthModule,
-
 
         BrowserModule,
         BrowserAnimationsModule,
@@ -85,6 +93,7 @@ export const firebaseConfig: FirebaseAppConfig = CONFIG.firebaseConfig;
         FuseProgressBarModule,
         FuseSharedModule,
         FuseSidebarModule,
+        FuseThemeOptionsModule,
 
         // App modules
         LayoutModule,

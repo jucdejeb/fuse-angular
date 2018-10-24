@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "fuse-angular-2b35a",
-    "production": "fuse-angular-2b35a"
+    "default": "mainapp-9c872"
   }
 }

@@ -5,11 +5,10 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/ma
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ForgotPasswordComponent } from 'app/main/pages/authentication/forgot-password/forgot-password.component';
-import { UrlRoute } from '@fuse/common/Routes';
 
 const routes = [
     {
-        path     : UrlRoute.auth + '/' + UrlRoute.forgotPassword,
+        path     : 'auth/forgot-password',
         component: ForgotPasswordComponent
     }
 ];
