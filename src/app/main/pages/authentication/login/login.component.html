@@ -12,8 +12,8 @@
 
             <form name="loginForm" (ngSubmit)="loginEmail()" [formGroup]="loginForm" novalidate>
                 <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loginError">
-                    <div>
-                        Email and Password is invalid
+                    <div class="red-fg mb-20">
+                        Invalid Login Credentials
                     </div>
                 </div>
                 <mat-form-field>
@@ -40,8 +40,7 @@
                     </a>
                 </div> -->
 
-                <button [ladda]="isFormSubmit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
-                    [disabled]="loginForm.invalid">
+                <button [ladda]="isFormSubmit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" [disabled]="loginForm.invalid">
                     LOGIN
                 </button>
 

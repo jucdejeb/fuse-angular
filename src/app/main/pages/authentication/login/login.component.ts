@@ -6,21 +6,24 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth-service.service';
+import { UserModel } from './login.model';
+import { LoginService } from './login.service';
 
 @Component({
-    selector     : 'login',
-    templateUrl  : './login.component.html',
-    styleUrls    : ['./login.component.scss'],
+    selector: 'login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class LoginComponent implements OnInit
-{
-    
+export class LoginComponent implements OnInit {
+
     isFormSubmit = false;
 
     loginForm: FormGroup;
     loginError = false;
+
+    UserData: UserModel = new UserModel({});
 
     /**
      * Constructor
@@ -31,20 +34,20 @@ export class LoginComponent implements OnInit
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
-		private authService: AuthService,
-        private router: Router
-    )
-    {
+        private authService: AuthService,
+        private router: Router,
+        private loginService: LoginService
+    ) {
         // Configure the layout
         this._fuseConfigService.config = {
             layout: {
-                navbar   : {
+                navbar: {
                     hidden: true
                 },
-                toolbar  : {
+                toolbar: {
                     hidden: true
                 },
-                footer   : {
+                footer: {
                     hidden: true
                 },
                 sidepanel: {
@@ -52,7 +55,7 @@ export class LoginComponent implements OnInit
                 }
             }
         };
-		if (authService.isLoggedIn()) {
+        if (authService.isLoggedIn()) {
             this.router.navigate(['apps/dashboards/analytics']);
         }
     }
@@ -64,12 +67,11 @@ export class LoginComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
-		this.buildForm();
+    ngOnInit(): void {
+        this.buildForm();
     }
-	
-	 buildForm() {
+
+    buildForm() {
         this.loginForm = this._formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
@@ -84,12 +86,18 @@ export class LoginComponent implements OnInit
         this.authService.signInWithEmail(data.email, data.password)
             .then((res) => {
                 this.isFormSubmit = false;
-                console.log(res);
+                this.UserData = new UserModel(res.user);
+                console.log(this.UserData);
+                this.isFormSubmit = false;
+                this.loginService.loadUserProfile(this.UserData).subscribe(res => {
+                    this.UserData = new UserModel(res);;
+                })
                 localStorage.setItem('userDetail', JSON.stringify(res));
 
                 this.redirectToDashboard();
             })
             .catch((err) => {
+                this.isFormSubmit = false;
                 this.loginError = true;
             });
     }

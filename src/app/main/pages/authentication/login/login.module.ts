@@ -5,6 +5,7 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { LaddaModule } from 'angular2-ladda';
 import { LoginComponent } from 'app/main/pages/authentication/login/login.component';
+import { LoginService } from './login.service';
 
 const routes = [
     {
@@ -26,6 +27,9 @@ const routes = [
         MatInputModule,
         FuseSharedModule,
 		LaddaModule
+    ],
+    providers: [
+        LoginService
     ]
 })
 export class LoginModule
