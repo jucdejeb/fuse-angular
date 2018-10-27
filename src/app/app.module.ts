@@ -41,21 +41,6 @@ const appRoutes: Routes = [
         loadChildren: './main/pages/pages.module#PagesModule'
     },
     {
-        path: 'ui',
-        canActivate: [AuthGuard],
-        loadChildren: './main/ui/ui.module#UIModule'
-    },
-    {
-        path: 'documentation',
-        canActivate: [AuthGuard],
-        loadChildren: './main/documentation/documentation.module#DocumentationModule'
-    },
-    {
-        path: 'angular-material-elements',
-        canActivate: [AuthGuard],
-        loadChildren: './main/angular-material-elements/angular-material-elements.module#AngularMaterialElementsModule'
-    },
-    {
         path: '**',
         redirectTo: 'apps/dashboards/analytics'
     }
