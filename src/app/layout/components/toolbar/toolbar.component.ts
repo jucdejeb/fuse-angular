@@ -9,6 +9,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/main/pages/authentication/auth/auth-service.service';
 import { navigation } from 'app/navigation/navigation';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Component({
     selector: 'toolbar',
@@ -158,7 +159,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
 
     goToProfile() {
-        this.router.navigate(['apps/pages/login']);
+        const url = UrlRoute.apps + '/' +  UrlRoute.profile
+        this.router.navigate([url]);
     }
 
     logout() {
