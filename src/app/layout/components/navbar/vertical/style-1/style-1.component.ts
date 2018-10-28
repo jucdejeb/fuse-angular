@@ -7,6 +7,9 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { LoginService } from '../../../../../main/pages/authentication/login/login.service';
+import { UserModel } from '../../../../../main/pages/authentication/login/login.model';
+import { GlobalConstants } from '@fuse/common/commpon.data';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -23,6 +26,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
     private _unsubscribeAll: Subject<any>;
 
+    UserData: UserModel = new UserModel({});
+
     /**
      * Constructor
      *
@@ -35,11 +40,13 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+        private loginService: LoginService
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+        this.UserData = JSON.parse(localStorage.getItem(GlobalConstants.LocalStorage.UserData));
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -99,6 +106,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        this.loadUserData();
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
@@ -128,6 +136,12 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
+    }
+
+    loadUserData() {
+        this.loginService.loadUserProfile(this.UserData).subscribe(res => {
+            this.UserData = new UserModel(res);
+        })
     }
 
     /**

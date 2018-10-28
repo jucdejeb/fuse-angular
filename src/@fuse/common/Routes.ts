@@ -1,7 +1,9 @@
 export const UrlRoute = {
     apps: 'apps',
     calendar: 'calendar',
-    dashboard: 'dashbaord',
+    dashboards: 'dashbaords',
+
+    analytics: 'analytics',
 
     pages: 'pages',
     auth: 'auth',

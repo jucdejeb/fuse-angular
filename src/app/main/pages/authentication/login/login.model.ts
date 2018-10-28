@@ -13,7 +13,8 @@ export class UserModel {
     state?: string;
     zipCode?: string;
     password: string;
-    dateOfBirth?: Date;
+    dateOfBirth?: number;
+    date: Date;
     emergencyContact: string;
     photoUrl?: string;
 
@@ -33,6 +34,7 @@ export class UserModel {
         this.zipCode = data.zipCode || '';
         this.password = data.password || '';
         this.dateOfBirth = data.dateOfBirth || '';
+        this.date = data.date || 0;
         this.emergencyContact = data.emergencyContact || '';
         this.photoUrl = data.photoUrl || '';
     }

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth-service.service';
 import { UserModel } from './login.model';
 import { LoginService } from './login.service';
+import { GlobalConstants } from '@fuse/common/commpon.data';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Component({
     selector: 'login',
@@ -56,7 +58,8 @@ export class LoginComponent implements OnInit {
             }
         };
         if (authService.isLoggedIn()) {
-            this.router.navigate(['apps/dashboards/analytics']);
+            const url = UrlRoute.apps + '/' + UrlRoute.dashboards + '/' + UrlRoute.analytics;
+            this.router.navigate([url]);
         }
     }
 
@@ -92,7 +95,7 @@ export class LoginComponent implements OnInit {
                 this.loginService.loadUserProfile(this.UserData).subscribe(res => {
                     this.UserData = new UserModel(res);;
                 })
-                localStorage.setItem('userDetail', JSON.stringify(res));
+                localStorage.setItem(GlobalConstants.LocalStorage.UserData, JSON.stringify(this.UserData));
 
                 this.redirectToDashboard();
             })
@@ -104,7 +107,8 @@ export class LoginComponent implements OnInit {
 
     redirectToDashboard() {
         setTimeout(() => {
-            this.router.navigate(['apps/dashboards/analytics']);
+            const url = UrlRoute.apps + '/' + UrlRoute.dashboards + '/' + UrlRoute.analytics
+            this.router.navigate([url]);
         }, 1500);
     }
 }

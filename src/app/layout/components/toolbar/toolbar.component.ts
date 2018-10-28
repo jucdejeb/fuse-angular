@@ -9,6 +9,10 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/main/pages/authentication/auth/auth-service.service';
 import { navigation } from 'app/navigation/navigation';
+import { UrlRoute } from '@fuse/common/Routes';
+import { UserModel } from '../../../main/pages/authentication/login/login.model';
+import { GlobalConstants } from '@fuse/common/commpon.data';
+import { LoginService } from '../../../main/pages/authentication/login/login.service';
 
 @Component({
     selector: 'toolbar',
@@ -26,6 +30,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     selectedLanguage: any;
     userStatusOptions: any[];
 
+    UserData: UserModel = new UserModel({});
+
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -41,7 +47,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private loginService: LoginService
     ) {
         // Set the defaults
         this.userStatusOptions = [
@@ -89,6 +96,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+        this.UserData = JSON.parse(localStorage.getItem(GlobalConstants.LocalStorage.UserData));
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -110,6 +118,14 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { 'id': this._translateService.currentLang });
+
+        this.loadUserData();
+    }
+
+    loadUserData() {
+        this.loginService.loadUserProfile(this.UserData).subscribe(res => {
+            this.UserData = new UserModel(res);
+        })
     }
 
     /**
@@ -139,26 +155,27 @@ export class ToolbarComponent implements OnInit, OnDestroy {
      *
      * @param value
      */
-    search(value): void {
-        // Do your search here...
-        console.log(value);
-    }
+    // search(value): void {
+    //     // Do your search here...
+    //     console.log(value);
+    // }
 
     /**
      * Set the language
      *
      * @param lang
      */
-    setLanguage(lang): void {
-        // Set the selected language for the toolbar
-        this.selectedLanguage = lang;
+    // setLanguage(lang): void {
+    //     // Set the selected language for the toolbar
+    //     this.selectedLanguage = lang;
 
-        // Use the selected language for translations
-        this._translateService.use(lang.id);
-    }
+    //     // Use the selected language for translations
+    //     this._translateService.use(lang.id);
+    // }
 
     goToProfile() {
-        this.router.navigate(['apps/pages/login']);
+        const url = UrlRoute.pages + '/' + UrlRoute.profile
+        this.router.navigate([url]);
     }
 
     logout() {

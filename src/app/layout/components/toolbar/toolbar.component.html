@@ -4,8 +4,8 @@
 
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-icon-button class="navbar-toggle-button"
-                    *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')"
+                fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
             </button>
 
@@ -25,11 +25,10 @@
 
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-button [matMenuTriggerFor]="userMenu"
-                    class="user-button">
+            <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Charlie Adams</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{UserData.firstName}} {{UserData.middleName}} {{UserData.lastName}}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -87,10 +86,7 @@
 
             <!-- <div class="toolbar-separator" fxHide fxShow.gt-xs></div> -->
 
-            <button mat-icon-button fxHide.gt-md
-                    class="chat-panel-toggle-button"
-                    (click)="toggleSidebarOpen('chatPanel')"
-                    aria-label="Toggle chat panel">
+            <button mat-icon-button fxHide.gt-md class="chat-panel-toggle-button" (click)="toggleSidebarOpen('chatPanel')" aria-label="Toggle chat panel">
                 <mat-icon class="secondary-text">chat</mat-icon>
             </button>
 
@@ -105,8 +101,8 @@
 
             <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
 
-            <button mat-icon-button class="navbar-toggle-button"
-                    *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')"
+                fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
             </button>
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatDividerModule, MatIconModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatDividerModule, MatIconModule, MatTabsModule, MatCardModule } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-
+import { LaddaModule } from 'angular2-ladda';
 import { ProfileService } from 'app/main/pages/profile/profile.service';
 import { ProfileComponent } from 'app/main/pages/profile/profile.component';
 import { ProfileTimelineComponent } from 'app/main/pages/profile/tabs/timeline/timeline.component';
@@ -35,8 +35,10 @@ const routes = [
         MatDividerModule,
         MatIconModule,
         MatTabsModule,
+        MatCardModule,
 
-        FuseSharedModule
+        FuseSharedModule,
+		LaddaModule
     ],
     providers   : [
         ProfileService
