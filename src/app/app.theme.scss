@@ -84,9 +84,9 @@ $typography: mat-typography-config(
 @import "src/app/main/pages/authentication/login/login.theme";
 @import "src/app/main/pages/authentication/forgot-password/forgot-password.theme";
 
-@import "src/app/main/pages/profile/tabs/about/about.theme";
-@import "src/app/main/pages/profile/tabs/photos-videos/photos-videos.theme";
-@import "src/app/main/pages/profile/tabs/timeline/timeline.theme";
+@import "src/app/main/apps/profile/tabs/about/about.theme";
+@import "src/app/main/apps/profile/tabs/photos-videos/photos-videos.theme";
+@import "src/app/main/apps/profile/tabs/timeline/timeline.theme";
 
 
 // Define a mixin for easier access

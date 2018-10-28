@@ -3,16 +3,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 
 import { AnalyticsDashboardService } from 'app/main/apps/dashboards/analytics/analytics.service';
+import { AuthService } from '../../../pages/authentication/auth/auth-service.service';
+import { UrlRoute } from '@fuse/common/Routes';
+import { Router } from '@angular/router';
 
 @Component({
-    selector     : 'analytics-dashboard',
-    templateUrl  : './analytics.component.html',
-    styleUrls    : ['./analytics.component.scss'],
+    selector: 'analytics-dashboard',
+    templateUrl: './analytics.component.html',
+    styleUrls: ['./analytics.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class AnalyticsDashboardComponent implements OnInit
-{
+export class AnalyticsDashboardComponent implements OnInit {
     widgets: any;
     widget1SelectedYear = '2016';
     widget5SelectedDay = 'today';
@@ -23,9 +25,15 @@ export class AnalyticsDashboardComponent implements OnInit
      * @param {AnalyticsDashboardService} _analyticsDashboardService
      */
     constructor(
-        private _analyticsDashboardService: AnalyticsDashboardService
-    )
-    {
+        private _analyticsDashboardService: AnalyticsDashboardService,
+        private authService: AuthService,
+        private router: Router
+    ) {
+        if (this.authService.isLoggedIn() === false) {
+            const url = UrlRoute.pages + '/' + UrlRoute.auth + '/' + UrlRoute.login
+            this.router.navigate([url]);
+        }
+        
         // Register the custom chart.js plugin
         this._registerCustomChartJSPlugin();
     }
@@ -37,8 +45,7 @@ export class AnalyticsDashboardComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Get the widgets from the service
         this.widgets = this._analyticsDashboardService.widgets;
     }
@@ -50,8 +57,7 @@ export class AnalyticsDashboardComponent implements OnInit
     /**
      * Register a custom plugin
      */
-    private _registerCustomChartJSPlugin(): void
-    {
+    private _registerCustomChartJSPlugin(): void {
         (<any>window).Chart.plugins.register({
             afterDatasetsDraw: function (chart, easing): any {
                 // Only activate the plugin if it's made available
@@ -59,8 +65,7 @@ export class AnalyticsDashboardComponent implements OnInit
                 if (
                     !chart.options.plugins.xLabelsOnTop ||
                     (chart.options.plugins.xLabelsOnTop && chart.options.plugins.xLabelsOnTop.active === false)
-                )
-                {
+                ) {
                     return;
                 }
 
@@ -69,8 +74,7 @@ export class AnalyticsDashboardComponent implements OnInit
 
                 chart.data.datasets.forEach(function (dataset, i): any {
                     const meta = chart.getDatasetMeta(i);
-                    if ( !meta.hidden )
-                    {
+                    if (!meta.hidden) {
                         meta.data.forEach(function (element, index): any {
 
                             // Draw the text in black, with the specified font

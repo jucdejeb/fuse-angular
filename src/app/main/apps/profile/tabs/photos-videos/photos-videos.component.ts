@@ -1,20 +1,21 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
-import { ProfileService } from 'app/main/pages/profile/profile.service';
+
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ProfileService } from '../../profile.service';
 
 @Component({
-    selector     : 'profile-about',
-    templateUrl  : './about.component.html',
-    styleUrls    : ['./about.component.scss'],
+    selector     : 'profile-photos-videos',
+    templateUrl  : './photos-videos.component.html',
+    styleUrls    : ['./photos-videos.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ProfileAboutComponent implements OnInit, OnDestroy
+export class ProfilePhotosVideosComponent implements OnInit, OnDestroy
 {
-    about: any;
+    photosVideos: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -41,10 +42,10 @@ export class ProfileAboutComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this._profileService.aboutOnChanged
+        this._profileService.photosVideosOnChanged
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(about => {
-                this.about = about;
+            .subscribe(photosVideos => {
+                this.photosVideos = photosVideos;
             });
     }
 

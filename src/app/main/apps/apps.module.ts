@@ -15,13 +15,17 @@ const routes = [
     {
         path        : 'chat',
         loadChildren: './chat/chat.module#ChatModule'
+    },
+    {
+        path        : 'profile',
+        loadChildren: './profile/profile.module#ProfileModule'
     }
 ];
 
 @NgModule({
     imports     : [
         RouterModule.forChild(routes),
-        FuseSharedModule
+        FuseSharedModule,
     ]
 })
 export class AppsModule

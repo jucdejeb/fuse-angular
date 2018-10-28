@@ -11,6 +11,9 @@ import { fuseAnimations } from '@fuse/animations';
 import { CalendarService } from 'app/main/apps/calendar/calendar.service';
 import { CalendarEventModel } from 'app/main/apps/calendar/event.model';
 import { CalendarEventFormDialogComponent } from 'app/main/apps/calendar/event-form/event-form.component';
+import { AuthService } from '../../pages/authentication/auth/auth-service.service';
+import { Router } from '@angular/router';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Component({
     selector     : 'calendar',
@@ -33,9 +36,17 @@ export class CalendarComponent implements OnInit
 
     constructor(
         private _matDialog: MatDialog,
-        private _calendarService: CalendarService
+        private _calendarService: CalendarService,
+        private authService: AuthService,
+        private router: Router
     )
     {
+        if (this.authService.isLoggedIn() === false) {
+            const url = UrlRoute.pages + '/' + UrlRoute.auth + '/' + UrlRoute.login
+            this.router.navigate([url]);
+        }
+
+        
         // Set the defaults
         this.view = 'month';
         this.viewDate = new Date();

@@ -1,0 +1,150 @@
+<div id="profile" class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between end">
+
+        <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start center">
+            <img class="profile-image avatar huge" src="assets/images/avatars/katherine.jpg" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+            <div class="name" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                {{UserData.firstName}} {{UserData.middleName}} {{UserData.lastName}}
+            </div>
+        </div>
+
+        <div class="actions" fxLayout="row" fxLayoutAlign="end center" [@animate]="{value:'*',params:{delay:'200ms'}}">
+            <button mat-raised-button color="accent" aria-label="Follow">Follow</button>
+            <button mat-raised-button color="primary" aria-label="Send Message">Send Message</button>
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content m-40">
+        <mat-card>
+            <form [formGroup]="userForm" (submit)="onSubmit()">
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="First Name" aria-label="First Name" formControlName="firstName" required>
+                            <mat-error *ngIf="userForm.get('firstName').hasError('required')">
+                                First Name is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Middle Name" aria-label="Middle Name" formControlName="middleName">
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Last Name" aria-label="Last Name" formControlName="lastName">
+                            <mat-error *ngIf="userForm.get('lastName').hasError('required')">
+                                Last Name is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Nick Name" aria-label="Nick Name" formControlName="nickName" required>
+                            <mat-error *ngIf="userForm.get('nickName').hasError('required')">
+                                Nick Name is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Email" aria-label="Email" formControlName="email" required>
+                            <mat-error *ngIf="userForm.get('nickName').hasError('required')">
+                                Email is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Phone Number" aria-label="Phone Number" formControlName="phoneNumber" required>
+                            <mat-error *ngIf="userForm.get('phoneNumber').hasError('required')">
+                                Phone Number is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" >
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="userForm.get('date').hasError('required')">
+                                Date of birth is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Emergency Contact" aria-label="Emergency Contact" formControlName="emergencyContact" required>
+                            <mat-error *ngIf="userForm.get('emergencyContact').hasError('required')">
+                                Emergency Contact is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12" style="width: 90%">
+                            <textarea matInput placeholder="Street Address" formControlName="streetAddress" required></textarea>
+                            <mat-error *ngIf="userForm.get('streetAddress').hasError('required')">
+                                Street Address is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="City" aria-label="City" formControlName="city" required>
+                            <mat-error *ngIf="userForm.get('city').hasError('required')">
+                                City is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="State" aria-label="State" formControlName="state" required>
+                            <mat-error *ngIf="userForm.get('state').hasError('required')">
+                                State is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-12" fxFlex>
+                        <mat-icon>star</mat-icon>
+                        <mat-form-field class="example-full-width pl-12">
+                            <input matInput placeholder="Zip Code" aria-label="Zip Code" formControlName="zipCode" required>
+                            <mat-error *ngIf="userForm.get('zipCode').hasError('required')">
+                                Zip Code is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+				<div fxLayout="row" fxLayoutAlign="space-between center">
+					<button  [ladda]="isFormSubmit" [disabled]="userForm.invalid" mat-raised-button color="primary">Save</button>
+				</div>
+            </form>
+        </mat-card>
+    </div>
+    <!-- / CONTENT -->
+
+</div>

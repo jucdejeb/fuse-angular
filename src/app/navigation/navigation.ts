@@ -55,7 +55,7 @@ export const navigation: FuseNavigation[] = [
                 title: 'Profile',
                 type: 'item',
                 icon: 'person',
-                url: '/pages/profile'
+                url: '/apps/profile'
             }
         ]
     }

@@ -6,6 +6,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FuseDirectivesModule } from '@fuse/directives/directives';
 import { FusePipesModule } from '@fuse/pipes/pipes.module';
+import { 
+        MatFormFieldModule, MatInputModule, MatNativeDateModule, MatDatepickerModule, MatSnackBarModule 
+    } from '@angular/material';
 
 @NgModule({
     imports  : [
@@ -23,10 +26,17 @@ import { FusePipesModule } from '@fuse/pipes/pipes.module';
         FormsModule,
         ReactiveFormsModule,
 
+        MatFormFieldModule, 
+
         FlexLayoutModule,
 
         FuseDirectivesModule,
-        FusePipesModule
+        FusePipesModule,
+
+        MatInputModule,
+		MatNativeDateModule,
+        MatDatepickerModule,
+        MatSnackBarModule
     ]
 })
 export class FuseSharedModule

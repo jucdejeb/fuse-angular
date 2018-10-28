@@ -5,6 +5,9 @@ import { takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 
 import { ChatService } from 'app/main/apps/chat/chat.service';
+import { AuthService } from '../../pages/authentication/auth/auth-service.service';
+import { Router } from '@angular/router';
+import { UrlRoute } from '@fuse/common/Routes';
 
 @Component({
     selector     : 'chat',
@@ -26,9 +29,16 @@ export class ChatComponent implements OnInit, OnDestroy
      * @param {ChatService} _chatService
      */
     constructor(
-        private _chatService: ChatService
+        private _chatService: ChatService,
+        private authService: AuthService,
+        private router: Router
     )
     {
+        if (this.authService.isLoggedIn() === false) {
+            const url = UrlRoute.pages + '/' + UrlRoute.auth + '/' + UrlRoute.login
+            this.router.navigate([url]);
+        }
+
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }

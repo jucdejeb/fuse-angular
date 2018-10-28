@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { UrlRoute } from '@fuse/common/Routes';
+import { GlobalConstants } from '@fuse/common/commpon.data';
 
 @Injectable()
 export class AuthService {
@@ -61,7 +62,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    const userData = localStorage.getItem('userDetail');
+    const userData = localStorage.getItem(GlobalConstants.LocalStorage.UserData);
     if (userData !== null && userData !== undefined) {
       return true;
     } else {
@@ -70,8 +71,11 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('userDetail');
+    localStorage.removeItem(GlobalConstants.LocalStorage.UserData);
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate(['pages/auth/login']));
+      .then((res) => {
+        const url = UrlRoute.pages + '/' + UrlRoute.auth + '/' + UrlRoute.login;
+        this.router.navigate([url]);
+      });
   }
 }
